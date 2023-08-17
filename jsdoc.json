@@ -2,7 +2,7 @@
     "resolve": {
         "includes": ["src/components"]
     },
-    "gitUrl":["https://git.caibeike.net/static/caibeike-b-static.git"],
+    "gitUrl":[""],
     "plugins": ["plugins/markdown", "node_modules/jsdoc-babel"],
     "tags": {
         "allowUnknownTags": true
