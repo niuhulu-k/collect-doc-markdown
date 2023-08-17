@@ -1,0 +1,28 @@
+{
+    "resolve": {
+        "includes": ["src/components"]
+    },
+    "gitUrl":["https://git.caibeike.net/static/caibeike-b-static.git"],
+    "plugins": ["plugins/markdown", "node_modules/jsdoc-babel"],
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "includePattern": ".+\\.(js|mjs|jsx|ts|tsx)$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": true
+        }
+    },
+    "babel": {
+        "extensions": ["ts", "tsx"],
+        "ignore": ["**/*.(test|spec).ts"],
+        "babelrc": false,
+        "presets": [["@babel/preset-env", { "targets": { "node": true } }], "@babel/preset-typescript"],
+        "plugins": ["@babel/proposal-class-properties", "@babel/proposal-object-rest-spread"]
+    }
+}
