@@ -1,8 +1,6 @@
 {
-    "resolve": {
-        "includes": ["src/components"]
-    },
-    "gitUrl":[""],
+    "includes": ["caibeike-b-static/src/component","caibeike-b-static/src/action","caibeike-cps-static/src/component"],
+    "gitUrl":["https://git.caibeike.net/static/caibeike-b-static.git","https://git.caibeike.net/static/caibeike-cps-static.git"],
     "plugins": ["plugins/markdown", "node_modules/jsdoc-babel"],
     "tags": {
         "allowUnknownTags": true

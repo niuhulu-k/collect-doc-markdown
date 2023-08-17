@@ -1,19 +1,11 @@
 const fs =  require('fs');
 const path =  require('path');
-const  url = require('url');
 const { rimraf} = require('rimraf')
 const jsdoc2md = require('jsdoc-to-markdown')
 
-
-const __filename = url.fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
-
-const res = JSON.parse(fs.readFileSync(path.join(__dirname, '/jsdoc.json'), 'utf-8'));
-
-function walkSync(currentDirPath, callback, level, target) {
+module.exports = function walkSync(currentDirPath, callback, level, target) {
     fs.readdirSync(currentDirPath, { withFileTypes: true }).forEach(function (dirent) {
-        const filePath = path.join(__dirname, currentDirPath, dirent.name);
+        const filePath = path.join( currentDirPath, dirent.name);
         let targetPath = target;
         if (level === 1) {
             if (dirent.isDirectory() || /\.(js|mjs|jsx|ts|tsx)$/.test(dirent.name)) {
@@ -59,14 +51,16 @@ function walkSync(currentDirPath, callback, level, target) {
         }
     });
 }
-if (res.resolve.includes.length > 0) {
-    if (fs.existsSync('docs')) {
-        rimraf.sync(path.join(__dirname, '/docs'));
-    }
-    fs.mkdirSync(`docs`);
-    res.resolve.includes.forEach(item => {
-        const _subFolder = path.join(__dirname, '/docs', path.basename(item));
-        fs.mkdirSync(_subFolder);
-        walkSync(item, function (filePath) {}, 1, _subFolder);
-    });
-}
+// if (res.includes.length > 0) {
+//     if (fs.existsSync('docs')) {
+//         rimraf.sync(path.join(__dirname, '/docs'));
+//     }
+//     fs.mkdirSync(`docs`);
+//     res.includes.forEach(item => {
+//         const project = item.match(/^.*?(?=\/)/g)[0]
+//         console.log(project)
+//         // const _subFolder = path.join(__dirname, '/docs', path.basename(item));
+//         // fs.mkdirSync(_subFolder);
+//         // walkSync(item, function (filePath) {}, 1, _subFolder);
+//     });
+// }

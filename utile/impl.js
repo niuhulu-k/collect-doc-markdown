@@ -9,10 +9,11 @@ module.exports = function clone(repo, targetPath, opts, onSuccess, onError) {
 	const [cmd, args] = buildCloneCommand(repo, targetPath, opts);
     console.log(cmd, args)
     const proc = spawn(cmd, args);
-return
+
     if (opts.progress) {
         proc.stderr.on('data', (evt) => {
             const line = evt.toString();
+            console.log(line)
             if (line.match(/Receiving objects:\s+(\d+)%/)) {
                 opts.progress({
                     phase: 'receivingObjects',
@@ -26,7 +27,12 @@ return
             }
         });
     }
-
+    process.stdin.on("data", data => {
+        data = data.toString()
+        
+         process.stdout.write(data + "\n")
+    })
+    
     proc.on('close', (status) => {
         if (status == 0) {
             if (opts.checkout) {
