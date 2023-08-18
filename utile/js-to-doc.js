@@ -1,6 +1,5 @@
 const fs =  require('fs');
 const path =  require('path');
-const { rimraf} = require('rimraf')
 const jsdoc2md = require('jsdoc-to-markdown')
 
 module.exports = function walkSync(currentDirPath, callback, level, target) {

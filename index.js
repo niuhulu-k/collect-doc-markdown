@@ -55,6 +55,9 @@ const main= async ()=>{
 				console.log(OriginPath,_subFolder)
 				 walkSync(OriginPath, function (filePath) {}, 1, _subFolder);
 				});
+				if (fs.existsSync('docPackages')) {
+					rimraf.sync(path.join(__dirname, '/docPackages'));
+				}
 			}
 			} catch (error) {
 			console.error('Error occurred:', error);
